@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pad Function Example</title>
+  <style>
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .form {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="form">
+      <label for="inputString">Input String:</label>
+      <input type="text" id="inputString" name="inputString"><br>
+
+      <label for="symbol">Symbol:</label>
+      <input type="text" id="symbol" name="symbol"><br>
+
+      <label for="length">Length:</label>
+      <input type="number" id="length" name="length"><br>
+
+      <label for="addToStart">Add to Start:</label>
+      <input type="checkbox" id="addToStart" name="addToStart"><br>
+
+      <button id="runButton">Run pad Function</button>
+
+      <p id="output"></p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('runButton').addEventListener('click', function() {
+      const inputString = document.getElementById('inputString').value;
+      const symbol = document.getElementById('symbol').value;
+      const length = parseInt(document.getElementById('length').value);
+      const addToStart = document.getElementById('addToStart').checked;
+
+      const result = pad(inputString, symbol, length, addToStart);
+      document.getElementById('output').innerText = result;
+    });
+
+    function pad(str, symbol, length, addToStart) {
+      const currentLength = str.length;
+      
+      if (currentLength >= length) {
+        return str;
+      }
+      
+      const diff = length - currentLength;
+      const padString = symbol.repeat(Math.ceil(diff / symbol.length)).substring(0, diff);
+      
+      if (addToStart) {
+        return padString + str;
+      } else {
+        return str + padString;
+      }
+    }
+  </script>
+
+</body>
+</html>
