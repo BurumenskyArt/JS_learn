@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Races Info</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    #races-info {
+      max-width: 600px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+  <div id="races-info">
+    <label for="race-select">Виберіть расу:</label>
+    <select id="race-select">
+      <option value="hobbits">Хобіт</option>
+      <option value="elves">Ельф</option>
+      <option value="dwarves">Гном</option>
+      <option value="humans">Людина</option>
+      <option value="ents">Ент</option>
+      <option value="orcs">Орк</option>
+    </select>
+    <div id="race-details"></div>
+  </div>
+
+  <script>
+    const races = {
+      hobbits: {
+        description: "Маленькі створіння з волоссям на ногах і любов'ю до затишку і доброї їжі.",
+        homeland: "Шир",
+        notableCharacters: ["Фродо Бегінс", "Сем Гемджі"],
+      },
+      elves: {
+        description: "Високі та елегантні створіння, обдаровані великою мудрістю та вмінням.",
+        homeland: "Лотлорієн",
+        notableCharacters: ["Леголас", "Галадріїль"],
+      },
+      dwarves: {
+        description: "Міцні та вправні горці, які вміють добре працювати з металом і каменем.",
+        homeland: "Дунедайн",
+        notableCharacters: ["Гімлі", "Торін Дубоділь"],
+      },
+      humans: {
+        description: "Разумні та мужні створіння, які швидко вчаться і можуть пристосовуватися до різних умов.",
+        homeland: "Гондор",
+        notableCharacters: ["Арагорн", "Боромір"],
+      },
+      ents: {
+        description: "Живі створіння, схожі на дерева, які мають глибокий зв'язок з лісом та природою.",
+        homeland: "Ліс Фангорн",
+        notableCharacters: ["Дереворіг", "Брат Лохандрин"],
+      },
+      orcs: {
+        description: "Сильні та жорстокі створіння, здатні до війни та підкорення.",
+        homeland: "Мордор",
+        notableCharacters: ["Урук-хай", "Азог"],
+      },
+    };
+    
+    const raceSelect = document.getElementById('race-select');
+    const raceDetails = document.getElementById('race-details');
+
+    function displayRaceDetails() {
+      const selectedRace = raceSelect.value;
+      const { description, homeland, notableCharacters } = races[selectedRace];
+
+      const raceHTML = `
+        <h2>Раса: ${selectedRace}</h2>
+        <p>Опис: ${description}</p>
+        <p>Батьківщина: ${homeland}</p>
+        <p>Видатні персонажі: ${notableCharacters.join(", ")}</p>
+        <hr>
+      `;
+
+      raceDetails.innerHTML = raceHTML;
+    }
+
+    raceSelect.addEventListener('change', displayRaceDetails);
+    displayRaceDetails(); // Відображення властивостей по замовчуванню
+  </script>
+</body>
+</html>
